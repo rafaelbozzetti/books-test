@@ -65,6 +65,7 @@ class BooksTableTest extends PHPUnit_Framework_TestCase
     public function testSaveBooksWillInsertNewBooksIfTheyDontAlreadyHaveAnId()
     {
         $bookData = array('title' => 'In My Dreams',
+                          'user_id' => 1, // na mao, paleativamente 
                           'description' => 'The Military Wives', 
                           'author' => 'Paulo Coelho');
 
@@ -104,6 +105,7 @@ class BooksTableTest extends PHPUnit_Framework_TestCase
         $mockTableGateway->expects($this->once())
                          ->method('update')
                          ->with(array('title' => 'In My Dreams',
+                                      'user_id' => 1,
                                       'description' => 'The Military Wives', 
                                       'author' => 'Paulo Coelho'),
                                 array('id' => 123));

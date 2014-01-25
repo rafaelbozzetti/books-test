@@ -22,11 +22,9 @@ class IndexController extends AbstractActionController
 
     public function indexAction()
     {
-
         return new ViewModel(array(
             'books' => $this->getBooksTable()->fetchAll(),
         ));
-
     }
 
     public function addAction()
@@ -105,7 +103,6 @@ class IndexController extends AbstractActionController
                 $this->getBooksTable()->deleteBooks($id);
             }
 
-            // Redirect to list of albums
             return $this->redirect()->toRoute('books');
         }
 

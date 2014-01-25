@@ -67,7 +67,7 @@ class Books
             )));
 
             $inputFilter->add($factory->createInput(array(
-                'name'     => 'descripion',
+                'name'     => 'description',
                 'required' => true,
                 'filters'  => array(
                     array('name' => 'StripTags'),
