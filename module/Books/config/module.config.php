@@ -10,6 +10,20 @@
 return array(
     'router' => array(
         'routes' => array(
+            'books' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/books[/][:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Books\Controller\Index',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
             'home' => array(
                 'type' => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(
@@ -19,37 +33,7 @@ return array(
                         'action'     => 'index',
                     ),
                 ),
-            ),
-            // The following is a route to simplify getting started creating
-            // new controllers and actions without needing to create a new
-            // module. Simply drop new controllers in, and you can access them
-            // using the path /application/:controller/:action
-            'books' => array(
-                'type'    => 'Literal',
-                'options' => array(
-                    'route'    => '/books',
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'Books\Controller',
-                        'controller'    => 'Index',
-                        'action'        => 'index',
-                    ),
-                ),
-                'may_terminate' => true,
-                'child_routes' => array(
-                    'default' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/[:controller[/:action]]',
-                            'constraints' => array(
-                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
-                            ),
-                            'defaults' => array(
-                            ),
-                        ),
-                    ),
-                ),
-            ),
+            ),            
         ),
     ),
     'service_manager' => array(
@@ -59,7 +43,7 @@ return array(
         ),
         'aliases' => array(
             'translator' => 'MvcTranslator',
-        ),
+        )
     ),
     'translator' => array(
         'locale' => 'en_US',
