@@ -1,3 +1,6 @@
 vendor/
 composer.lock
 composer.phar
+config/autoload/local.php
+module/Books/tests/_reports
+config/test.config.php
