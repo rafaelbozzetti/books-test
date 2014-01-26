@@ -44,6 +44,7 @@ class Module
 
     public function getServiceConfig()
     {
+        // Service Manager
         return array(
             'factories' => array(
                 'Books\Model\BooksTable' =>  function($sm) {

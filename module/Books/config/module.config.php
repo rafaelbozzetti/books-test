@@ -16,24 +16,14 @@ return array(
                     'route'    => '/books[/][:action][/:id]',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'id'     => '[0-9]+',
+                        'id'     => '[a-z|A-Z|0-9]+',
                     ),
                     'defaults' => array(
                         'controller' => 'Books\Controller\Index',
                         'action'     => 'index',
                     ),
                 ),
-            ),
-            'home' => array(
-                'type' => 'Zend\Mvc\Router\Http\Literal',
-                'options' => array(
-                    'route'    => '/',
-                    'defaults' => array(
-                        'controller' => 'Books\Controller\Index',
-                        'action'     => 'index',
-                    ),
-                ),
-            ),            
+            ),        
         ),
     ),
     'service_manager' => array(
@@ -76,7 +66,6 @@ return array(
             __DIR__ . '/../view',
         ),
     ),
-    // Placeholder for console routes
     'console' => array(
         'router' => array(
             'routes' => array(

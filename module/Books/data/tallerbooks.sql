@@ -25,3 +25,12 @@ CREATE  TABLE IF NOT EXISTS `books` (
         ON DELETE NO ACTION
         ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+INSERT INTO  `users` (
+  `id`,
+  `username`,
+  `password`,
+  `role`)
+  VALUES (
+  NULL ,  'rafael',  'rafael',  'user'
+);

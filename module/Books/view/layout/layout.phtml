@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <?php echo $this->headTitle('ZF2 '. $this->translate('books-test'))->setSeparator(' - ')->setAutoEscape(false) ?>
+        <?php echo $this->headTitle('Books-test'); ?>
 
         <?php echo $this->headMeta()
             ->appendName('viewport', 'width=device-width, initial-scale=1.0')
@@ -37,8 +37,8 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Home') ?></a></li>
-                        <li><a href="/books/"><?php echo $this->translate('Books') ?></a></li>
+                        <li><a href="<?php echo $this->url('admin') ?>"><?php echo $this->translate('Home') ?></a></li>
+                        <li><a href="<?php echo $this->url('books') ?>"><?php echo $this->translate('Books') ?></a></li>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>

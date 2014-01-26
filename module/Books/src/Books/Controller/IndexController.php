@@ -15,21 +15,43 @@ use Books\Model\Books;
 use Books\Model\BooksTable;
 use Books\Form\BookForm;
 
+/**
+ * Controlador principal do módulo Books
+ * @group Controller
+ */
 class IndexController extends AbstractActionController
 {
 
+    /*
+     * TableGateway 
+     */
     protected $booksTable;
 
+    /*
+     * Somente redireciona pra action list
+     */
     public function indexAction()
-    {
+    {               
+        return $this->redirect()->toUrl('/books/list/title');
+    }
+
+    /*
+     * Listagem de livros, recebe parametro para ordenação
+     */
+    public function listAction()
+    {               
+        $order = $this->params()->fromRoute('id', false);
+
         return new ViewModel(array(
-            'books' => $this->getBooksTable()->fetchAll(),
+            'books' => $this->getBooksTable()->filterAll($order),
         ));
     }
 
+    /*
+     * Adicionar livro
+     */
     public function addAction()
-    {
-        
+    {        
         $form = new BookForm();
         $form->get('submit')->setValue('Add');
 
@@ -54,6 +76,9 @@ class IndexController extends AbstractActionController
         
     }
 
+    /*
+     * Editar livro
+     */
     public function editAction()
     {
         $id = (int) $this->params()->fromRoute('id', 0);
@@ -66,7 +91,7 @@ class IndexController extends AbstractActionController
 
         $form  = new BookForm();
         $form->bind($book);
-        $form->get('submit')->setAttribute('value', 'Edit');
+        $form->get('submit')->setAttribute('value', 'Save');
 
         $request = $this->getRequest();
         if ($request->isPost()) {
@@ -86,6 +111,9 @@ class IndexController extends AbstractActionController
         );
     }
 
+    /*
+     * Remover livro
+     */
     public function deleteAction()
     {
         $id = (int) $this->params()->fromRoute('id', 0);
@@ -112,6 +140,9 @@ class IndexController extends AbstractActionController
         );
     }
 
+    /*
+     * Retorna TableGateway do modelo \Books\Model\BooksTabçe
+     */
     public function getBooksTable()
     {
         if (!$this->booksTable) {

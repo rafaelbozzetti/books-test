@@ -48,6 +48,7 @@ class BookForm extends Form
             'name' => 'submit',
             'attributes' => array(
                 'type'  => 'submit',
+                'class' => 'btn btn-primary',
                 'value' => 'Add',
                 'id' => 'submitbutton',
             ),

@@ -1,9 +1,12 @@
 <?php
-
 $title = 'Add new book';
 $this->headTitle($title);
 ?>
 <h1><?php echo $this->escapeHtml($title); ?></h1>
+<a class="btn btn-primary" href="<?php echo $this->url('books', array('controller'=>'index','action'=>'index'));?>">Cancel</a>
+<hr />
+
+<div class="well">
 <?php
 $form = $this->form;
 $form->setAttribute('action', $this->url('books', array('action' => 'add')));
@@ -16,3 +19,5 @@ echo $this->formRow($form->get('description'));
 echo $this->formRow($form->get('author'));
 echo $this->formSubmit($form->get('submit'));
 echo $this->form()->closeTag();
+?>
+</div>

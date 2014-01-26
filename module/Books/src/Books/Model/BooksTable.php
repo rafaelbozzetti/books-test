@@ -1,9 +1,12 @@
 <?php
-
 namespace Books\Model;
 
 use Zend\Db\TableGateway\TableGateway;
+use Zend\Authentication\AuthenticationService;
 
+/**
+ * @group Model
+ */
 class BooksTable
 {
     protected $tableGateway;
@@ -16,6 +19,25 @@ class BooksTable
     public function fetchAll()
     {
         $resultSet = $this->tableGateway->select();
+        return $resultSet;
+    }
+
+    public function filterAll($order = false)
+    {
+
+        $auth = new AuthenticationService();
+        $identity = $auth->getIdentity(); // username
+
+        $order = ($order ? $order : 'id');
+
+        $sqlSelect = $this->tableGateway->getSql()->select();
+
+        $sqlSelect->columns(array('*'));
+        $sqlSelect->join('users', 'users.id = books.user_id', array(), 'left')
+                  ->where("users.username = '$identity' ")
+                  ->order("books.$order ASC");
+
+        $resultSet = $this->tableGateway->selectWith($sqlSelect);
         return $resultSet;
     }
 
