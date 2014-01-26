@@ -24,6 +24,19 @@ Criação das bases de dados: tallerbooks e tallerbooks_test
 
 ``> $ mysql -u user -p < module/Books/data/schema.sql``
 
+### Configurar acesso da aplicação ao banco
+
+Usuário e senha devem ser ajustados no arquivo ``config/autoload/local.php```
+
+```
+return array(
+    'db' => array(
+        'username' => 'usuario',
+        'password' => 'senha',
+        ),
+);
+
+```
 
 ### Configuração do Apache
 ```
