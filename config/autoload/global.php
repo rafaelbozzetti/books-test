@@ -12,6 +12,7 @@
  */
 
 return array(
+    // Service Manager    
     'service_manager' => array(
         'factories' => array(
             'Zend\Db\Adapter\Adapter' => 'Zend\Db\Adapter\AdapterServiceFactory',
@@ -23,5 +24,43 @@ return array(
         'driver_options' => array(
             PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
         ),
+    ),
+    // Acl's
+    'acl' => array(
+        // Definição de Roles da aplicação
+        'roles' => array(
+            'guest'   => null,
+            'admin' => 'guest'
+        ),
+        // Declaração de recursos acessiveis
+        'resources' => array(
+            'Books\Controller\Index.index',
+            'Books\Controller\Index.list',
+            'Books\Controller\Index.add',
+            'Books\Controller\Index.edit',
+            'Books\Controller\Index.delete',
+            'Admin\Controller\Auth.index',
+            'Admin\Controller\Auth.logout',
+        ),
+        // Acl
+        'privilege' => array(
+            // usuários não logados
+            'guest' => array(
+                'allow' => array(                    
+                    'Admin\Controller\Auth.index',
+                    'Admin\Controller\Auth.logout',
+                )
+            ),
+            // usuários logados
+            'admin' => array(
+                'allow' => array(
+                    'Books\Controller\Index.index',
+                    'Books\Controller\Index.list',
+                    'Books\Controller\Index.add',
+                    'Books\Controller\Index.edit',
+                    'Books\Controller\Index.delete',                    
+                )
+            ),
+        )
     )
 );

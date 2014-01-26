@@ -1,6 +1,3 @@
-create database tallerbooks;
-create database tallerbooks_test;
-
 use tallerbooks;
  
 CREATE  TABLE IF NOT EXISTS `users` (
@@ -32,5 +29,5 @@ INSERT INTO  `users` (
   `password`,
   `role`)
   VALUES (
-  NULL ,  'rafael',  'rafael',  'user'
+  NULL ,  'rafael',  md5('rafael'),  'user'
 );
