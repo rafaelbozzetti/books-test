@@ -1,0 +1,21 @@
+<h1>Login</h1>
+<hr />
+<div class="well">
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url('admin', array('action' => 'index')));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formRow($form->get('username'));
+echo $this->formRow($form->get('password'));
+echo $this->formSubmit($form->get('submit'));
+echo $this->form()->closeTag();
+
+?>
+</div>
+<div class="alert alert-info">
+<b>Test</b> <br />
+Username: <b>rafael</b><br />
+Password: <b>rafael</b>
+</div>
