@@ -1,0 +1,26 @@
+<?php 
+$title = 'Delete book';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<p>You realy want to delete this book?
+	<br />
+	<div class="well">
+	    <h2>Book Title: <?php echo $this->escapeHtml($book->title); ?></h2>
+	    <h3>Author: <?php echo $this->escapeHtml($book->author); ?></h3>
+    </div>
+</p>
+<?php
+$url = $this->url('books', array(
+                  'action' => 'delete',
+                  'id'     => $this->id,
+				));
+?>
+<form action="<?php echo $url; ?>" method="post">
+<div>
+    <input type="hidden" name="id" value="<?php echo (int) $book->id; ?>" />
+    <input class="btn btn-danger" type="submit" name="del" value="Yes" />
+    <input class="btn btn-primary" type="submit" name="del" value="No" />
+</div>
+</form>

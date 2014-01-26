@@ -1,1 +1,28 @@
-books::index
+<h1><?php echo $this->escapeHtml('My books'); ?></h1>
+<p>
+    <a href="<?php echo $this->url('books', array('controller'=>'index','action'=>'add'));?>">Add book</a>
+</p>
+
+<table class="table">
+<tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Author</th>
+    <th>&nbsp;</th>
+</tr>
+<?php foreach ($books as $book) : ?>
+<tr>
+    <td><?php echo $this->escapeHtml($book->title);?></td>
+    <td><?php echo $this->escapeHtml($book->description);?></td>
+    <td><?php echo $this->escapeHtml($book->author);?></td>
+    <td>
+        <a href="<?php echo $this->url('books',
+            array('action'=>'edit', 'id' => $book->id));?>">Edit</a>
+
+        <a href="<?php echo $this->url('books',
+            array('action'=>'delete', 'id' => $book->id));?>">Delete</a>
+
+    </td>
+</tr>
+<?php endforeach; ?>
+</table>

@@ -9,8 +9,13 @@
 
 namespace Books;
 
+use Books\Model\Books;
+use Books\Model\BooksTable;
+use Zend\Db\ResultSet\ResultSet;
+use Zend\Db\TableGateway\TableGateway;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
+
 
 class Module
 {
@@ -36,4 +41,25 @@ class Module
             ),
         );
     }
+
+    public function getServiceConfig()
+    {
+        // Service Manager
+        return array(
+            'factories' => array(
+                'Books\Model\BooksTable' =>  function($sm) {
+                    $tableGateway = $sm->get('BooksTableGateway');
+                    $table = new BooksTable($tableGateway);
+                    return $table;
+                },
+                'BooksTableGateway' => function ($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Books());
+                    return new TableGateway('books', $dbAdapter, null, $resultSetPrototype);
+                },
+            ),
+        );
+    }
+
 }
